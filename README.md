@@ -154,7 +154,10 @@ http://192.168.0.13:8069/api/vehicles/contact/10
     ]
 }
 ```
+Prueba en Thunder Client 
+<img width="1264" height="702" alt="get en thunder client" src="https://github.com/user-attachments/assets/d6a843b2-c0b5-468e-8c9f-bea76ce34f49" />
 
+Prueba desde el navegador
 <img width="757" height="737" alt="image" src="https://github.com/user-attachments/assets/724d93f8-c87b-47ac-99a9-a09d6c95dcee" />
 
 
