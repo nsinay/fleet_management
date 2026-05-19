@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- ROOT MENU -->
+    <menuitem id="fleet_management_root_menu"
+              name="Flota de Vehículos"
+              sequence="10"
+              groups="fleet_management.group_fleet_management_user,fleet_management.group_fleet_management_manager"/>
+
+
+    <!-- VEHICLE MENU -->
+    <menuitem id="fleet_vehicle_menu"
+              name="Vehículos"
+              parent="fleet_management_root_menu"
+              action="fleet_vehicle_action"
+              sequence="1"
+              groups="fleet_management.group_fleet_management_user,fleet_management.group_fleet_management_manager"/>
+
+</odoo>

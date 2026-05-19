@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_res_partner_form_inherit_fleet_management"
+            model="ir.ui.view">
+
+        <field name="name">
+            res.partner.form.inherit.fleet.management
+        </field>
+
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Vehículos">
+
+                    <group>
+                        <field name="vehicle_count"
+                               string="Cantidad de Vehículos"
+                               readonly="1"/>
+                    </group>
+
+                    <field name="vehicle_ids">
+                        <list editable="bottom">
+
+                            <field name="license_plate" string="Matrícula"/>
+                            <field name="brand" string="Marca"/>
+                            <field name="model" string="Modelo"/>
+                            <field name="year" string="Año"/>
+                            <field name="vehicle_type" string="Tipo de Vehículo"/>
+                            <field name="active" string="Activo"/>
+
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

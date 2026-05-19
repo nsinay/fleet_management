@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- LIST VIEW -->
+    <record id="view_fleet_vehicle_list" model="ir.ui.view">
+        <field name="name">fleet.vehicle.custom.list</field>
+        <field name="model">fleet.vehicle.custom</field>
+        <field name="arch" type="xml">
+
+            <list string="Vehículos">
+
+                <field name="license_plate" string="Matrícula"/>
+                <field name="brand" string="Marca"/>
+                <field name="model" string="Modelo"/>
+                <field name="year" string="Año"/>
+                <field name="vehicle_type" string="Tipo de Vehículo"/>
+                <field name="partner_id" string="Contacto"/>
+                <field name="active" string="Activo"/>
+
+            </list>
+
+        </field>
+    </record>
+
+
+    <!-- FORM VIEW -->
+    <record id="view_fleet_vehicle_form" model="ir.ui.view">
+        <field name="name">fleet.vehicle.custom.form</field>
+        <field name="model">fleet.vehicle.custom</field>
+        <field name="arch" type="xml">
+
+            <form string="Vehículo">
+
+                <sheet>
+                    <header>
+                        <button name="%(action_vehicle_transfer_wizard)d"
+                                string="Transferir Vehículo"
+                                type="action"
+                                class="btn-primary"/>
+                    </header>
+
+                    <notebook>
+
+                        <!-- INFORMACIÓN -->
+                        <page string="Información General">
+
+                            <group>
+
+                                <group>
+                                    <field name="license_plate"/>
+                                    <field name="brand"/>
+                                    <field name="model"/>
+                                    <field name="year"/>
+                                </group>
+
+                                <group>
+                                    <field name="vehicle_type"/>
+                                    <field name="color"/>
+                                    <field name="partner_id"/>
+                                    <field name="active"/>
+                                </group>
+
+                            </group>
+
+                        </page>
+
+
+                        <!-- HISTORIAL -->
+                        <page string="Historial de Transferencias">
+
+                            <field name="transfer_history_ids"
+                                readonly="1">
+
+                                <list>
+
+                                    <field name="transfer_date"/>
+                                    <field name="old_partner_id"/>
+                                    <field name="new_partner_id"/>
+                                    <field name="user_id"/>
+                                    <field name="reason"/>
+
+                                </list>
+
+                            </field>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+
+    <!-- SEARCH VIEW -->
+    <record id="view_fleet_vehicle_search" model="ir.ui.view">
+        <field name="name">fleet.vehicle.custom.search</field>
+        <field name="model">fleet.vehicle.custom</field>
+        <field name="arch" type="xml">
+
+            <search string="Buscar Vehículos">
+
+                <field name="license_plate" string="Matrícula"/>
+                <field name="brand" string="Marca"/>
+                <field name="model" string="Modelo"/>
+                <field name="partner_id" string="Contacto"/>
+
+                <filter string="Activos"
+                        name="filter_active"
+                        domain="[('active', '=', True)]"/>
+
+                <group expand="0" string="Agrupar Por">
+
+                    <filter string="Marca"
+                            name="group_brand"
+                            context="{'group_by':'brand'}"/>
+
+                    <filter string="Año"
+                            name="group_year"
+                            context="{'group_by':'year'}"/>
+
+                    <filter string="Contacto"
+                            name="group_partner"
+                            context="{'group_by':'partner_id'}"/>
+
+                    <filter string="Tipo de Vehículo"
+                            name="group_vehicle_type"
+                            context="{'group_by':'vehicle_type'}"/>
+
+                </group>
+
+            </search>
+
+        </field>
+    </record>
+
+
+    <!-- KANBAN VIEW -->
+    <record id="view_fleet_vehicle_kanban" model="ir.ui.view">
+        <field name="name">fleet.vehicle.custom.kanban</field>
+        <field name="model">fleet.vehicle.custom</field>
+        <field name="arch" type="xml">
+
+            <kanban>
+
+                <field name="license_plate"/>
+                <field name="brand"/>
+                <field name="model"/>
+                <field name="year"/>
+                <field name="partner_id"/>
+
+                <templates>
+
+                    <t t-name="card">
+
+                        <div class="oe_kanban_global_click">
+
+                            <div class="oe_kanban_details">
+
+                                <strong>
+                                    <field name="license_plate"/>
+                                </strong>
+
+                                <div>
+                                    <field name="brand"/>
+                                    -
+                                    <field name="model"/>
+                                </div>
+
+                                <div>
+                                    Año:
+                                    <field name="year"/>
+                                </div>
+
+                                <div>
+                                    Contacto:
+                                    <field name="partner_id"/>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </t>
+
+                </templates>
+
+            </kanban>
+
+        </field>
+    </record>
+
+
+    <!-- ACTION -->
+    <record id="fleet_vehicle_action" model="ir.actions.act_window">
+        <field name="name">Vehículos</field>
+        <field name="res_model">fleet.vehicle.custom</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="search_view_id" ref="view_fleet_vehicle_search"/>
+    </record>
+
+</odoo>

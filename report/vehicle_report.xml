@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- REPORT ACTION -->
+    <record id="action_report_partner_vehicles" model="ir.actions.report">
+        <field name="name">Reporte de Vehículos</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">fleet_management.report_partner_vehicles_template</field>
+        <field name="report_file">fleet_management.report_partner_vehicles_template</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Vehiculos - %s' % (object.name)</field>
+    </record>
+
+
+    <!-- REPORT TEMPLATE -->
+    <template id="report_partner_vehicles_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="partner">
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <h2>Reporte de Vehículos</h2>
+                        <br/>
+                        <p>
+                            <strong>Contacto:</strong>
+                            <span t-field="partner.name"/>
+                        </p>
+
+                        <p>
+                            <strong>Total de Vehículos:</strong>
+                            <span t-field="partner.vehicle_count"/>
+                        </p>
+                        <br/>
+
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Matrícula</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Año</th>
+                                    <th>Tipo</th>
+                                    <th>Color</th>
+                                    <th>Activo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="partner.vehicle_ids">
+
+                                    <tr t-foreach="partner.vehicle_ids"
+                                        t-as="vehicle">
+                                        <td>
+                                            <span t-field="vehicle.license_plate"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="vehicle.brand"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="vehicle.model"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="vehicle.year"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="vehicle.vehicle_type"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="vehicle.color"/>
+                                        </td>
+                                        <td>
+                                            <span t-if="vehicle.active">
+                                                Sí
+                                            </span>
+
+                                            <span t-if="not vehicle.active">
+                                                No
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <t t-if="not partner.vehicle_ids">
+                                    <tr>
+
+                                        <td colspan="7"
+                                            class="text-center">
+                                            Este contacto no tiene vehículos asociados.
+                                        </td>
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

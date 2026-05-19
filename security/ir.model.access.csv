@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_user,fleet.vehicle.user,model_fleet_vehicle_custom,fleet_management.group_fleet_management_user,1,1,1,0
+access_fleet_vehicle_manager,fleet.vehicle.manager,model_fleet_vehicle_custom,fleet_management.group_fleet_management_manager,1,1,1,1
+
+access_vehicle_transfer_wizard_user,vehicle.transfer.wizard.user,model_vehicle_transfer_wizard,fleet_management.group_fleet_management_user,1,1,1,1
+access_vehicle_transfer_history_user,vehicle.transfer.history.user,model_vehicle_transfer_history,fleet_management.group_fleet_management_user,1,0,0,0
+access_vehicle_transfer_history_manager,vehicle.transfer.history.manager,model_vehicle_transfer_history,fleet_management.group_fleet_management_manager,1,1,1,1
